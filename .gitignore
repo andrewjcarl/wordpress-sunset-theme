@@ -1,0 +1,55 @@
+# Github Deploy
+deploy
+
+# Compiled CSS
+*.css
+*.css.map
+*.min.css
+
+# wordpress theme files
+!style.css 
+
+# Minified js
+# *.min.js
+# /assets/js/vendor/*.min.js
+# /assets/js/editor.js
+
+# Sass
+.sass-cache
+
+# ignore packages
+node_modules
+npm-debug.log
+
+# ignore OS generated files
+ehthumbs.db
+Thumbs.db
+*.DS_Store
+
+# ignore Editor files
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# ignore compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
