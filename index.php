@@ -18,6 +18,11 @@ get_header();
 ?>
 
 <main id="site-content" role="main">
+    <?php
+    if (is_front_page() || is_home()) : 
+        get_template_part( 'template-parts/front-page');
+    endif;
+    ?>
     <section>
         <?php 
         if ( have_posts() ) :
