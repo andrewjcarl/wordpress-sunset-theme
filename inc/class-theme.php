@@ -35,7 +35,8 @@ if ( ! class_exists( 'Theme' ) ) :
             add_filter( 'widget_nav_menu_args', array( $this, 'widget_nav_menu_args'), 10, 3 );
             add_filter( 'get_the_archive_title', array( $this, 'theme_archive_title_filter') );
             add_filter( 'excerpt_more', array( $this, 'filter_excerpt_more_text') );
-            add_filter( 'walker_nav_menu_start_el', array( $this, 'nav_menu_social_icons' ), 10, 4 );
+            // add_filter( 'walker_nav_menu_start_el', array( $this, 'nav_menu_social_icons' ), 10, 4 );
+            add_filter( 'walker_nav_menu_start_el', array( $this, 'nav_menu_primary_icons' ), 11, 4 );
         }
         
         /**
@@ -74,7 +75,8 @@ if ( ! class_exists( 'Theme' ) ) :
             $theme_version = wp_get_theme()->get( 'Version' );
 
             $styles = array(
-                'main-style' => '/assets/css/main.css'  
+                'main-style' => '/assets/dist/main.css',
+                //'prism-style' => '/assets/css/prism.css',
             );
 
             foreach( $styles as $style => $path ) {
@@ -167,6 +169,23 @@ if ( ! class_exists( 'Theme' ) ) :
                 }
                 $item_output = str_replace( $args->link_after, '</span>' . $svg, $item_output );
                 $item_output = str_replace( $args->link_before, '<span class="screen-reader-text icon-large">', $item_output);
+            }
+
+            return $item_output;
+        }
+
+        /**
+         * Display SVG icons in primary menu
+         * 
+         * @since 1.0.0
+         */
+        function nav_menu_primary_icons( $item_output, $item, $depth, $args ) {
+            // Change SVG icon inside social links menu if there is supported URL.
+            if ( 'primary' === $args->theme_location ) {
+                $svg = Theme_SVG_Icons::get_icon_link_svg( $item->title );
+                if ( !empty( $svg ) ) {
+                    $item_output = str_replace( $args->link_before, $svg . $args->link_before, $item_output );
+                }
             }
 
             return $item_output;

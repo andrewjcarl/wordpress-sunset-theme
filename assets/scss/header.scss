@@ -1,0 +1,53 @@
+@import './utils/variables';
+
+header#site-header {
+    .header-inner {
+        max-width: $page-width;
+        margin: 0 auto;
+        padding-top: 4rem;
+    }
+
+    .header-inner h1 {
+        margin-bottom: 2rem;
+        font-weight: 800;
+        text-align: center;
+        color: $dark-grey;
+    }
+}
+
+nav.menu {
+    ul.menu {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    ul.menu > li {
+        &:not(:first-child) {
+            margin-left: 3rem;
+        }
+
+        a,
+        a:visited {
+            color: $black;
+            text-decoration: none;
+        }
+
+        a {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: center;
+        }
+
+        a > svg {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 1rem;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}

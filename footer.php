@@ -12,6 +12,7 @@
  */
 ?>
         <footer id="site-footer" role="contentinfo" class="header-footer-group">
+            <p class="align-center">Built with Wordpress.</p>
         </footer><!-- #site-footer -->
 
 		<?php wp_footer(); ?>

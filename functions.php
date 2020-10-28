@@ -32,3 +32,4 @@ require 'inc/theme-template-functions.php';
 //	SVG Support
 require 'inc/svg-icons.php';
 require 'inc/class-svg-icons.php';
+//require 'inc/class-prism-syntax.php';

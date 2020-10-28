@@ -1,0 +1,47 @@
+
+// Retina Query Functions 
+@mixin retina-images {
+    @media
+        only screen and (-webkit-min-device-pixel-ratio: 2),
+        only screen and (   min--moz-device-pixel-ratio: 2),
+        only screen and (     -o-min-device-pixel-ratio: 2/1),
+        only screen and (        min-device-pixel-ratio: 2),
+        only screen and (                min-resolution: 192dpi),
+        only screen and (                min-resolution: 2dppx) { 
+            @content;
+        }
+}
+
+@mixin retina-media-phone {
+    @include media-phone {
+        @include retina-images {
+            @content;
+        }
+    }
+}
+
+// Media Query Functions
+@mixin media-desktop-sm {
+    @media only screen and (max-width : $breakpoint-desktop-sm) {
+        @content; 
+    }
+}
+
+@mixin media-tablet-xl {
+    @media only screen and (max-width : $breakpoint-tablet-xl) {
+        @content; 
+    }
+}
+
+@mixin media-tablet {
+    @media only screen and (max-width : $breakpoint-tablet) {
+        @content; 
+    }
+}
+
+@mixin media-phone {
+    @media only screen and (max-width : $breakpoint-phone) {
+        @content; 
+    }
+}
+

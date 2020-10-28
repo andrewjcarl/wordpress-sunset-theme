@@ -121,12 +121,12 @@
          .pipe(autoprefixer('last 2 version', '> 1%', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
          .pipe(sourcemaps.write('.'))
          .pipe(plumber.stop())
-         .pipe(dest('./assets/css'))
+         .pipe(dest('./assets/dist'))
          .pipe(filter('**/*.css')) // Filtering stream to only css files
          .pipe(cmq()) // Combines Media Queries
          .pipe(rename({ suffix: '.min' }))
          .pipe(minifycss({ compatibility: 'ie8' }))
-         .pipe(dest('./assets/css'))
+         .pipe(dest('./assets/dist'))
          .pipe(notify({ message: 'Styles task complete', onLast: true }));
  };
  

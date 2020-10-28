@@ -1,0 +1,14 @@
+// variables
+@import './utils/variables';
+@import './utils/mixins';
+
+// foundation files
+@import './reset.scss';
+@import './typography.scss';
+@import './layout.scss';
+
+// main files
+@import './header.scss';
+@import './footer.scss';
+@import './front-page.scss';
+@import './content.scss';

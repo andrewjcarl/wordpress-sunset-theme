@@ -48,6 +48,17 @@
     
 		<header id="site-header" role="banner" class="<?php if ( is_home() || is_front_page() ) { echo 'is-home'; } ?>">
             <div class="header-inner">
-
+                <h1><?php echo __('Andrew Carl', 'andrewcarl'); ?></h1>
+                <?php
+                    if (has_nav_menu('primary')) :
+                        wp_nav_menu(array(
+                            'container' => 'nav',
+                            'container_class' => 'menu',
+                            'theme_location' => 'primary',
+                            'link_before' => '<span>',
+                            'link_after' => '</span>'
+                        ));
+                    endif;
+                ?>
             </div><!-- .header-inner -->
         </header>
