@@ -30,13 +30,15 @@ if ( ! class_exists( 'Theme' ) ) :
 		public function __construct() {
 			add_action( 'after_setup_theme', array( $this, 'setup' ) );
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
-            add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 10 );
+            add_action( 'after_setup_theme', array( $this, 'custom_image_thumbnails' ) );
+            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts_and_styles' ), 10 );
             add_action( 'after_setup_theme', array( $this, 'menu_init' ) );
             add_filter( 'widget_nav_menu_args', array( $this, 'widget_nav_menu_args'), 10, 3 );
             add_filter( 'get_the_archive_title', array( $this, 'theme_archive_title_filter') );
             add_filter( 'excerpt_more', array( $this, 'filter_excerpt_more_text') );
             // add_filter( 'walker_nav_menu_start_el', array( $this, 'nav_menu_social_icons' ), 10, 4 );
             add_filter( 'walker_nav_menu_start_el', array( $this, 'nav_menu_primary_icons' ), 11, 4 );
+            add_filter( 'post_class', array( $this, 'set_custom_post_class' ), 10, 3 );
         }
         
         /**
@@ -50,9 +52,11 @@ if ( ! class_exists( 'Theme' ) ) :
 		 */
 		public function setup() {
 
-	        //	general wordpress theme support
+	        //	Wordpress theme support
             add_theme_support( 'title-tag' ); 
             add_theme_support( 'automatic-feed-links' );
+            add_theme_support( 'post-thumbnails' );
+            add_theme_support( 'editor-styles' );
         }
 
         /**
@@ -66,24 +70,34 @@ if ( ! class_exists( 'Theme' ) ) :
         }
 
         /**
+         *  Register Custom image sizes
+         */
+        public function custom_image_thumbnails() {
+
+            add_image_size( 'thumbnail-wide', 500, 150, true);
+        }
+
+        /**
 		 * Enqueue scripts and styles.
 		 *
          * @version 1.0.0
 		 * @since   1.0.0
 		 */
-		public function scripts() {
+		public function enqueue_scripts_and_styles() {
             $theme_version = wp_get_theme()->get( 'Version' );
 
             $styles = array(
                 'main-style' => '/assets/dist/main.css',
-                //'prism-style' => '/assets/css/prism.css',
             );
 
             foreach( $styles as $style => $path ) {
                 wp_enqueue_style( $style, get_template_directory_uri() . $path, null, $theme_version );
             }
 
-            //  queue javascript files
+            //  Configure Editor Styles
+            add_editor_style( get_template_directory_uri() . '/assets/dist/editor-style.css' );
+
+            //  Enqueue javascript files
             wp_enqueue_script( 'main-js', get_template_directory_uri() . '/assets/js/index.js', array(), $theme_version, false );
         }
 
@@ -124,16 +138,16 @@ if ( ! class_exists( 'Theme' ) ) :
          */
         function theme_archive_title_filter($title) {    
             if ( is_category() ) {    
-                    $title = single_cat_title( '', false );    
-                } elseif ( is_tag() ) {    
-                    $title = single_tag_title( '', false );    
-                } elseif ( is_author() ) {    
-                    $title = '<span class="vcard">' . get_the_author() . '</span>' ;    
-                } elseif ( is_tax() ) { //for custom post types
-                    $title = sprintf( __( '%1$s' ), single_term_title( '', false ) );
-                } elseif (is_post_type_archive()) {
-                    $title = post_type_archive_title( '', false );
-                }
+                $title = single_cat_title( '', false );    
+            } elseif ( is_tag() ) {    
+                $title = single_tag_title( '', false );    
+            } elseif ( is_author() ) {    
+                $title = '<span class="vcard">' . get_the_author() . '</span>' ;    
+            } elseif ( is_tax() ) { //for custom post types
+                $title = sprintf( __( '%1$s' ), single_term_title( '', false ) );
+            } elseif (is_post_type_archive()) {
+                $title = post_type_archive_title( '', false );
+            }
             return $title;    
         }
 
@@ -189,6 +203,36 @@ if ( ! class_exists( 'Theme' ) ) :
             }
 
             return $item_output;
+        }
+
+        /**
+         *  Set custom post classes through post_class filter
+         * 
+         *  @since 1.0.0
+         */
+        function set_custom_post_class( $classes, $class, $post_id ) {
+
+            //  Add class whether post has categories 
+            if ( !empty( get_the_category( $post_id ) ) ) {
+                $class[] = 'has-categories';
+            }
+
+            if ( has_post_thumbnail( $post_id ) ) {
+                $class[] = 'has-post-thumbnail';
+            }
+
+            //  Class that distinguishes an article used in a loop
+            if ( is_home() || is_front_page() || is_archive() ) {
+                $class[] = 'loop-article';
+            }
+
+            if ( is_singular( 'page' ) ) {
+                $class[] = 'singular-page';
+            } elseif ( is_singular( 'post' ) ) {
+                $class[] = 'singular-post';
+            }
+
+            return $class;
         }
     }
 endif; 

@@ -18,21 +18,32 @@ get_header();
 ?>
 
 <main id="site-content" role="main">
+    
     <?php
-    if (is_front_page() || is_home()) : 
+    if ( is_front_page() || is_home() ) {
         get_template_part( 'template-parts/front-page');
-    endif;
+    } else {
     ?>
+
     <section>
         <?php 
         if ( have_posts() ) :
             while ( have_posts() ) {
                 the_post();
-                get_template_part( 'template-parts/content', get_post_type() );
+                if ( is_singular() ) {
+                    get_template_part( 'template-parts/content', get_post_type() );
+                } else {
+                    get_template_part( 'template-parts/content-excerpt', get_post_type() );
+                }
             }
         endif;
         ?>
     </section>
+    
+    <?php
+    }
+    ?>
+
 </main>
 
 <?php 

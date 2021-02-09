@@ -1,14 +1,11 @@
-// variables
-@import './utils/variables';
-@import './utils/mixins';
-
-// foundation files
-@import './reset.scss';
-@import './typography.scss';
-@import './layout.scss';
-
-// main files
-@import './header.scss';
-@import './footer.scss';
-@import './front-page.scss';
-@import './content.scss';
+@import 'partials/reset.scss';
+@import 'partials/typography.scss';
+@import 'partials/layout.scss';
+@import 'partials/header.scss';
+@import 'partials/footer.scss';
+@import 'partials/front-page.scss';
+@import 'partials/entry-content.scss';
+@import 'partials/entry-author.scss';
+@import 'partials/components.scss';
+@import 'partials/navigation.scss';
+@import 'partials/blocks.scss';

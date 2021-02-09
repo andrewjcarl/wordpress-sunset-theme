@@ -11,11 +11,13 @@ $black:     black;
 
 //  Colors
 $blue:      #79878B;
+$dark-blue: darken($blue, 35%);
 $yellow:    #F2C064;
 $light-tan: #FFEEE0;
 $tan:       #D9B597;
 $orange:    #F3855F;
 $red:       #BF6D65;
+$purple:    #8091F0;
 
 //  Breakpoints 
 $breakpoint-phone:      375px;

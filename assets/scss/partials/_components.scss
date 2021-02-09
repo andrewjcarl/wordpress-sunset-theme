@@ -1,0 +1,123 @@
+@import './utils/mixins';
+@import './utils/variables';
+
+@mixin card( $background : $light-grey ) {
+    position: relative;
+    background: $background;
+    margin-bottom: 4rem;
+}
+
+@mixin box-shadow-hover() {
+
+}
+
+.card {
+    @include card();
+}
+
+.card-inner {
+    padding: 3rem;
+}
+
+.header-card {
+    @include card($light-tan);
+}
+
+ul.menu-vertical {
+    @include reset-menu();
+
+    li a {
+        color: $black;
+        font-weight: bold;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    li a:hover {
+        color: $orange; 
+        fill: $orange;
+    }
+
+    li a svg {
+        margin-right: .5rem;
+    }
+
+    li:not(:last-child) {
+        margin-bottom: .65rem;
+    }
+}
+
+article.loop-article {
+    position: relative;
+    background: $light-grey;
+    transition: box-shadow .2s ease-out; 
+
+    &.has-categories:not(.has-post-thumbnail) {
+        padding-top: 4rem;
+    }
+
+    .entry-categories {
+        position: absolute;
+        top: 3rem;
+        left: 3rem;
+    }
+
+    .article-inner {
+        padding: 3rem;
+    }
+
+    img {
+        width: auto;
+        height: auto;
+    }
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    h3 > a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {color: $orange;}
+    }
+
+    &:hover {
+        @include box-shadow;
+    }
+
+    .post-date {
+        color: $grey;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    // &:hover .arrow-button {
+    //     visibility: visible;
+    // }
+
+    .arrow-button {
+        visibility: hidden;
+        position: absolute;
+        top: 50%;
+        right: -2rem;
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -2rem;
+        padding: .5rem;
+        border-radius: 50%;
+        background: $light-grey;
+        box-shadow: 1px 1px 4px rgba(0,0,0,.15);
+
+        & > svg {
+            height: 100%;
+            width: 100%;
+            color: $dark-grey;
+        }
+    }
+}

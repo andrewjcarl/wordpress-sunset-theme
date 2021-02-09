@@ -1,0 +1,142 @@
+@import './utils/variables';
+@import './utils/mixins';
+
+.entry-title {
+    margin-bottom: 1rem;
+}
+
+.singular-page .entry-title {
+    text-align: center;
+}
+
+.entry-date,
+.entry-categories,
+.entry-author,
+.entry-content {
+    margin-bottom: 2rem;
+}
+
+.entry-content {
+    margin-top: 4rem;
+    
+    //  Paragraph and Paragraph child styles
+    p, li {
+        font-size: 2rem;
+    }
+    
+    p:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+
+    p + p {
+        margin-top: 2rem;
+    }
+
+    p code {
+        background: $dark-grey;
+        padding: .25rem;
+        color: $white;
+        border: 1px solid $light-grey;
+        border-radius: .2rem;
+    }
+
+
+    //  Header styles
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 2rem;
+    }
+
+
+    //  Block Separators
+    hr,
+    .wp-block-separator {
+        margin: 3rem 0;
+        clear: both;
+    }
+
+
+    //  List Styles
+    ol, ul {
+        font-size: 2rem;
+        padding-left: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    ol {
+        counter-reset: item;
+    }
+
+    ol > li {
+        list-style-type: none;
+        counter-increment: item;
+    }
+
+    ol > li:before {
+        display: inline-block;
+        padding-right: 1rem;
+        font-weight: bold;
+        text-align: right;
+        content: counter(item) ".";
+    }
+
+
+    //  Code Blocks
+    pre,
+    .wp-block-preformatted {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+
+    //  Columns
+    .wp-block-text-columns {
+        margin-bottom: 2rem;
+    }
+    
+
+    //  Block Quotes
+    .wp-block-pullquote blockquote,
+    blockquote.wp-block-quote {
+
+        cite {
+            text-transform: uppercase;
+            font-style: normal;
+            letter-spacing: .2rem;
+            color: $grey;
+        }
+    }
+
+    blockquote.wp-block-quote {
+        margin-bottom: 2rem;
+        padding: 1rem 1rem 1rem 2rem;
+        border-left: 2px solid $light-tan;
+    
+        p { margin-bottom: 2rem; }
+    }
+
+    .wp-block-pullquote blockquote p {
+        font-size: 3.2rem;
+    }
+}
+
+.entry-categories {
+    @include flex-row;
+
+    a {
+        color: $white;
+        background: $orange;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: .2rem .6rem;
+        font-size: 1.2rem;
+        letter-spacing: 5%;
+
+        &:not(:first-child) {
+            margin-left: 1rem;
+        }
+    }
+
+    .category-wordpress { background: $blue; }
+    .category-php       { background: $purple; }
+    .category-snippets  { background: $black; }
+}

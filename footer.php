@@ -12,7 +12,7 @@
  */
 ?>
         <footer id="site-footer" role="contentinfo" class="header-footer-group">
-            <p class="align-center">Built with Wordpress.</p>
+            <p class="align-center">Copyright &copy; <?php echo date('Y'); ?> Andrew Carl</p>
         </footer><!-- #site-footer -->
 
 		<?php wp_footer(); ?>

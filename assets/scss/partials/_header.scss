@@ -17,12 +17,13 @@ header#site-header {
 
 nav.menu {
     ul.menu {
-        font-size: 2rem;
         display: flex;
         justify-content: center;
     }
-
+    
     ul.menu > li {
+        font-size: 2rem;
+        
         &:not(:first-child) {
             margin-left: 3rem;
         }
@@ -47,7 +48,8 @@ nav.menu {
         }
 
         a:hover {
-            text-decoration: underline;
+            color: $orange;
+            // text-decoration: underline;
         }
     }
 }

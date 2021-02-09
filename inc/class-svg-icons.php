@@ -1,9 +1,8 @@
 <?php
 /**
- * Custom icons for this theme.
+ * 	Custom icons for this theme.
+ * 	Borrowed from TwentyTwenty SVG class implementation
  *
- * @package WordPress
- * @subpackage sunset-theme
  * @since 1.0.0
  */
 
@@ -31,7 +30,7 @@ if ( ! class_exists( 'Theme_SVG_Icons' ) ) {
 			} else {
 				$arr = array();
 			}
-			if ( array_key_exists( $icon, $arr ) ) {
+			if ( array_key_exists( $icon, $arr ) ) {	
 				$repl = '<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" ';
 				$svg  = preg_replace( '/^<svg /', $repl, trim( $arr[ $icon ] ) ); // Add extra attributes to SVG code.
 				$svg  = str_replace( '#1A1A1B', $color, $svg );   // Replace the color.
@@ -83,7 +82,7 @@ if ( ! class_exists( 'Theme_SVG_Icons' ) ) {
 				if ( preg_match( $key, $text) ) {
 					return get_theme_svg( $icon, 'font-awesome' );
 				}
-			} 
+			}
 			return null;
 		}
 

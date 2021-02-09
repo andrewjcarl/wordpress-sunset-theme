@@ -1,0 +1,56 @@
+@import '../utils/mixins';
+@import '../utils/variables';
+
+//  Author bio
+.entry-author {
+    background: $light-tan;
+    position: relative;
+    margin-top: 8rem;
+    
+    .entry-author-inner {
+        @include flex-row;
+        padding: 4rem;
+    }
+
+    .entry-author-content {
+        margin-left: 4rem;
+    }
+
+    .entry-author-social {
+        width: 10rem;
+        position: relative;
+        padding-top: 5rem;
+    }
+
+    h3 {
+        margin-bottom: 2rem;
+    }
+
+    .entry-author-image {
+        position: absolute;
+        top: -5rem;
+
+        img {
+            width: 10rem;
+            border-radius: 50%;
+            border: .5rem solid $white;
+            overflow: hidden;
+        }
+    }
+
+    @include media-phone {
+        .entry-author-inner {
+            flex-direction: column-reverse;
+        }
+
+        .entry-author-content {
+            margin-left: 0;
+            margin-top: 2rem;
+        }
+
+        .entry-author-social {
+            padding-top: 0;
+            margin-top: 2rem;
+        }
+    }
+}

@@ -1,0 +1,72 @@
+@import './utils/variables';
+@import './utils/mixins';
+
+/**
+ *  Header, Footer, and Main blocks
+ */
+header#site-header, 
+footer#site-footer,
+main#site-content {
+    width: 100%;
+}
+
+main#site-content {
+    margin: 4rem 0;
+    padding: 0 4rem;
+}
+
+
+main#site-content > section:not(.full-width) {
+    max-width: $page-width;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main#site-content > section + section {
+    margin-top: 4rem;
+}
+
+@include media-phone {
+    main#site-content {
+        padding: 0 2rem;
+    }
+}
+
+/**
+ * Column & Flex layouts 
+ */
+.columns {
+    column-count: 2;
+    column-gap: 4rem;
+
+    & > * {
+        break-inside: avoid;
+    }
+}
+
+@include media-phone {
+    .columns {
+        column-count: 1;
+        column-gap: 0;
+    }
+}
+
+/**
+ * Helper Classes
+ * TODO: move to a different file?
+ */ 
+
+.content-padding {
+    padding: 3rem;
+}
+
+
+/**
+ *  Screen Reader Text 
+ */
+.screen-reader-text {
+    visibility: none;
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
